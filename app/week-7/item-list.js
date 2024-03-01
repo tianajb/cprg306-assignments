@@ -3,24 +3,21 @@ import Item from "./item";
 import { useState } from "react";
 
 
-export default function ItemList({ items }) {
+export default function ItemList({ items, onItemSelect }) {
     const [sortBy, setSortBy] = useState("name");
+    const [selectedItem, setSelectedItem] = useState("");
 
-    //===========ADDED===========
-    const [selectedItem, setSelectedItem] = useState(null);
-    // Example function that sets selectedItem
-
-    function onItemSelect(item) {
+    function handleItemSelect(item) {
         setSelectedItem(item);
     }
-    //===========END OF ADDED CODE===========
+    onItemSelect(selectedItem);
+
     if (sortBy === "name") {
         items.sort((a, b) => a.name.localeCompare(b.name));
     }
     else if (sortBy === "category") {
         items.sort((a, b) => a.category.localeCompare(b.category));
     };
-
 
     return (
         <main className="m-4">
@@ -41,8 +38,10 @@ export default function ItemList({ items }) {
                     <div>
                         <ul>
                             {items.map((item) => (
-                                <li key={item.id} onClick={() => onItemSelect(item.name)}
-                                    style={{ backgroundColor: selectedItem === item ? 'blue' : 'transparent' }}>
+                                <li key={item.id} onClick={() => handleItemSelect(item.name)}
+                                    style={{ backgroundColor: selectedItem === item.name ? 'lightgreen' : 'transparent' }}
+                                    className="w-80">
+
                                     <Item name={item.name} quantity={item.quantity} category={item.category} />
                                 </li>
                             ))}
@@ -52,7 +51,7 @@ export default function ItemList({ items }) {
 
 
             }
-        </main>
+        </main >
 
     );
 

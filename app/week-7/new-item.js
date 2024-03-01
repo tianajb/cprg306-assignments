@@ -22,7 +22,7 @@ export default function NewItem({ onAddItem }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className=" bg-slate-200 text-slate-950 size-96 align-middle h-40">
+                <div className=" bg-slate-200 text-slate-950 size-96 align-middle h-40 mx-2">
                     <div>
                         <label htmlFor="name">Name: </label>
                         <input type="text" id="name" value={name}
@@ -55,8 +55,8 @@ export default function NewItem({ onAddItem }) {
                     </div>
                     <div className="flex items-center justify-center">
                         <button type="submit"
-                            className="bg-sky-200 active:bg-green-200
-                            hover:bg-sky-400 hover: font-bold  
+                            className="bg-green-400
+                            hover:bg-green-200 hover: font-bold  
                             size-10 m-1 rounded-md w-11/12">+
                         </button>
                     </div>

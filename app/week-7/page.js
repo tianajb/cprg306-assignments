@@ -14,21 +14,26 @@ export default function Page() {
 
    const [selectedItemName, setSelectedItemName] = useState("");
    const handleItemSelect = (selectedItem) => {
-      selectedItem.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|�[�-�]|�[�-�]|[\u2011-\u26FF]|�[�-�])/g, '');
+
+      setSelectedItemName(selectedItem.split(",")[0].trim().replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD10-\uDDFF])|/g, ''));
    };
 
    return (
 
       <main className="m-4">
          <h1 className="text-4xl font-bold text-slate-300 mb-3">Shopping List</h1>
-         <div className="my-3">
-            <div>
+         <div className="my-3 flex flex-row ">
+            <div className="size-96">
                <NewItem onAddItem={handleAddItem} />
-               <MealIDeas onItemSelect={selectedItemName} />
+               <ItemList items={items} onItemSelect={handleItemSelect} />
+
             </div>
-            <div>
-               <ItemList items={items} />
+            <div className="w-5/6 mx-9">
+
+               <MealIDeas ingredient={selectedItemName} />
             </div>
+
+
 
          </div>
       </main>
