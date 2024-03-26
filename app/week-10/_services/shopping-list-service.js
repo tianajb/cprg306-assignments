@@ -1,5 +1,6 @@
 import { db } from "../_utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
+import { useEffect } from "react";
 
 export const getItems = async (userId) => {
     try {
@@ -25,3 +26,4 @@ export const addItem = async (userId, item) => {
         console.error("Error adding item: ", error);
     }
 };
+
